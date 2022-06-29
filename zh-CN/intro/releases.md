@@ -5,7 +5,7 @@ sort: 2
 
 # beego 2.0.4
 
-注意：现在
+注意：现在我们强制[web admin]服务只提供HTTP服务。
 
 [Change Log](https://github.com/beego/beego/releases/tag/v2.0.4)
 
