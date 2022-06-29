@@ -180,15 +180,18 @@ func (c *CMSController) Product() {
 
 ## 可能遇到的问题
 1. CORS
-	两种解决方案：
+	三种解决方案：
 	- 把 swagger 集成到应用中，下载请到[swagger](https://github.com/beego/swagger/releases),然后放在项目目录下：
 
 			if web.BConfig.RunMode == "dev" {
 				web.BConfig.WebConfig.DirectoryIndex = true
 				web.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 			}
+	- 修改项目routers
+	   web.InsertFilter("*", web.BeforeRouter, cors.Allow(&cors.Options{
+		AllowAllOrigins: true, // // 允许访问所有源
+	    }))
 	- API 增加 CORS 支持
-
-			ctx.Output.Header("Access-Control-Allow-Origin", "*")
+                ctx.Output.Header("Access-Control-Allow-Origin", "*")
 
 2. 未知错误，因为这是我自己项目中使用的，所以可能大家在写的过程中会遇到一些莫名的错误，请提 issue 去吧！
